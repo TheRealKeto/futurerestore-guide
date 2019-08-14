@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="assets/css/github-markdown.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+    <title>Futurerestore | Guide</title>
+</head>
+<style>
+    .markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+<article class="markdown-body">
+	<!-- Introduction -->
+	<h1>Introduction</h1>
+    <p>Futurerestore is a tool that allows iOS users to upgrade, downgrade, or re-restore to an unsigned firmware utilizing SHSH blobs. This is a guide that will focus on helping upgrade, downgrade, or re-restore using Futurerestore.</p>
+	<p>This guide is based off of <a href="https://docs.google.com/document/d/1WHuwuvnkcEUCwaDuck2dy-MR7q4em38uL4_4Utx2QZ8/mobilebasic" rel="nofollow">this one</a>, except it has been made into a website for better formatting.</p>
+	<p>Keep in mind that anything said in this guide is information that should be taken with a grain of salt, as the guide is targeted to users who want to use Futurerestore to upgrade to iOS 12.2 (as of August 2019), but is not limited to those users, as the methods used here can be used to go to another version, but with some modifications.</p>
+	<p><strong>No one but you</strong> will be held resposible for any damage caused to your device when following this guide.</p>
+
+	<!-- Background Info -->
+	<h2>Background Info</h2>
+	<p>Before you begin following this guide, there are few things to keep in mind:</p>
+	<ul>
+		<li>As of August 2019, <strong>iOS 12.4's SEP and Baseband are fully compatible when downgrading/upgrading, or re-restoring to iOS 12.2.</strong> This means that you can use the latest SEP and Baseband method, instead of manually specifying your SEP and Baseband. </li>
+		<li>Make sure iTunes and its drivers are installed correctly. This is critical to <strong>Windows users</strong>, as you want to avoid having the Microsoft Store version of iTunes.</li>
+		<li>If you decide to use a backup after using <a href="https://github.com/s0uthwest/futurerestore/releases">Futurerestore</a>, make sure that you have gone through the process of getting rid of your jailbreak before backing up your jailbroken device. Most recent jailbreaks have an option named "Restore RootFS" that can help with this.</li>
+		<li>This process does not work for 32-bit Windows users. Sorry!</li>
+	</ul>
+
+	<!-- Getting ready to Restore -->
+	<h2>Getting ready to Restore</h2>
+	<p>Before the restore process happens, there are a few things you will need:</p>
+	<ul>
+		<li><a href="https://github.com/s0uthwest/futurerestore/releases">Futurerestore's</a> latest released version.</li>
+		<li>Your SHSH blob file from <a href="https://tsssaver.1conan.com" rel="nofollow">TSSSaver</a>. (If you're unsure as to which file you should get, obtain the file that is inside your <code>noapnonce</code> folder)</li>
+		<li>The IPSW file of the version you're going to upgrade, downgrade, or re-restore to. You can find beta firmwares <a href="https://www.theiphonewiki.com/wiki/Beta_Firmware">here</a>, otherwise, you can obtain officially released firmwares from <a href="https://ipsw.me">ipsw.me</a>.</li>
+	</ul>
+	<p>Once you have all of these requirements downloaded, put them in a folder, which should be named <code>futurerestore</code>.</p>
+	<p>When you download your blob, it is recommended to rename it to <code>blob.blob</code> (for ease). Your IPSW should be renamed to something of your liking (such as <code>ipsw.ipsw</code>) for ease.</p>
+
+	<!-- Finding your Nonce Generator -->
+	<h3>Finding your Nonce Generator</h3>
+	<p>Finding and setting your Nonce Generator for your blob is a very critical step throughout this process, otherwise, the restoration process <strong>will not work.</strong> Here's how you can find your nonce generator for your blob:</p>
+	<ol>
+		<li>Download your blob from <a href="https://tsssaver.1conan.com" rel="nofollow">TSSSaver</a></li>
+		<li>Open your blob file with a text editor</li>
+		<li><strong>(On Windows)</strong> Press <code>CTrl +F</code>, or <strong>(On macOS)</strong> Press <code>Command + F</code>, then, search for the word "generator"</li>
+	</ol>
+	<p>Next to, or underneath the generator, you will see that there's a string of (around) 16 characters. Please save this key for later.</p>
+
+	<!-- Setting up your Nonce Generator -->
+	<h3>Setting up your Nonce Generator</h3>
+	<p>Now that you have found your nonce generator, its time to set it. There are many nonce setters out there, but here's a list of the most well know:</p>
+	<ul>
+		<li><a href="https://github.com/Siguza/PhoenixNonce" rel="nofollow">PhœnixNonce</a> for iOS 9.x.</li>
+		<li><a href="https://github.com/julioverne/julioverne.github.io/blob/master/debfiles/com.julioverne.nonceset_0.4_iphoneos-arm.deb" rel="nofollow">NonceSet</a> for iOS 10.x.</li>
+		<li><a href="https://github.com/julioverne/NonceSet112" rel="no-follow">NonceSet1112</a> for iOS 11 - 11.1.2.</li>
+		<li><a href="https://github.com/GeoSn0w/GeoNonceSetter12/releases">GeoNonceSetter12</a> for iOS 12 - 12.2.</li>
+		<li><a href="http://cydia.saurik.com/package/xyz.xninja.systeminfo/" rel="nofollow">System Info</a> for iOS 8, 9, 10, and 11. (Available in Cydia, or any other package manager)</li>
+	</ul>
+	<p>Alternatively, modern jailbreak tools, such as <a href="https://github.com/pwn20wndstuff/Undecimus/releases">unc0ver</a>, or <a href="https://chimera.sh" rel="nofollow">Chimera</a>, have an option to set a nonce generator on supported firmwares, so you can use them to set your nonce as well.</p>
+	<p>Here's how you can set-up your nonce:</p>
+	<ol>
+		<li>Open your nonce setter tool (or modern jailbreak tool)</li>
+		<li>Find a text field with the words "generator", "nonce" or "set nonce"</li>
+		<li>Within that region, type in your key that you saved from your blob</li>
+		<li>Press the "Set Nonce" button (or hit "Jailbreak" if you're using a jailbreak tool)</li>
+	</ol>
+	<p>Once you've set your nonce generator, you're ready to begin the restoration process.</p>
+
+	<!-- Restoring -->
+	<h2>Restoring</h2>
+	<p>You are finally ready to restore your device to the desired unsigned firmware. Get ready because this a heck of a lot of things to do. Before restoring, there are things you should keep in mind:</p>
+	<ul>
+		<li>Failing to disable "Find my iPhone/iPad/iPod" and/or having <a href="https://cydia.akemi.ai/?page/net.angelxwind.noplsrecovery" rel="nofollow">NO PLS Recovery</a> installed before beginning the restoration process can cause the restore to not begin, or fail.</li>
+		<li>If your device is put into "Recovery Mode" during this process, do not panic. This is entirely normal. However, <strong>avoid any iTunes alerts</strong> by hitting the "Cancel" button on any iTunes alert that you recieve.</li>
+	</ul>
+	<p>A good practice when using Futurerestore is to place your blob, iPSW of unsigned firmware, and Futurerestore into <strong>one folder</strong>. With that out of the way, there are many ways you can restore to an unsinged firmware. This guide will go through most (if not, all) ways of restoring.</p>
+
+	<!-- Common Restore -->
+	<h3>Common Restore (Automatic SEP and Baseband)</h3>
+	<p>This method is commonly used when the latest SEP and Baseband of the latest iOS version is compatible with the version you are trying to restore to. In order to downgrade/upgrade, or re-restore using this method:</p>
+	<ol>
+		<li>Open Command Prompt/Terminal</li>
+		<li>Open your <code>Futurerestore</code> folder, then drag futurerestore into Command Prompt/Terminal, then type <code>-t</code></li>
+		<li>Drag your blob file (<code>blob.blob</code>)</li>
+		<li>Type <code>--latest-sep --latest-baseband</code>, then drag your IPSW file</li>
+	</ol>
+	<p>In the end, your result should look something like this (assuming your folder is on your Desktop, using Windows):</p>
+	<pre><code>C:\Users\&lt;youruser&gt;\Desktop\futurerestore.exe -t &lt;your blob (blob.blob)&gt; --latest-sep --latest-baseband &lt;your IPSW (ipsw.ipsw)&gt;</code></pre>
+	<p>For iPods and <strong>Wifi-Only</strong> iPads, you should not specify the latest baseband:</p>
+	<pre><code>C:\Users\&lt;youruser&gt;\Desktop\futurerestore.exe -t &lt;your blob (blob.blob)&gt; --latest-sep --no-baseband &lt;your IPSW (ipsw.ipsw)&gt;</code></pre>
+	<p>Once you are sure that you have the right command, hit enter and the restore should begin.</p>
+
+	<!-- Specifying SEP/Baseband -->
+	<h3>Mnaually specify SEP & Baseband</h3>
+	<p>This method is used when the latest SEP and Baseband of the latest iOS version is not compatible with the version you are trying to downgrade/upgrade, or re-restore to. </p>
+	<p>When specifying a custom SEP and Baseband, you are essensially doing so solemly because <strong>that specific SEP and Baseband is compatible with the version you're trying to downgrade/upgrade, or re-restore to.</strong></p>
+
+	<!-- Finding your Buildmanifest -->
+	<h4>Finding the right BuildManifest, compatible SEP, & compatible Baseband</h4>
+	<ol>
+		<li>Find the link of the iOS version that has a Baseband that is compatible with the version you are restoring to. (You can find these in <a href="https://ipsw.me">ipsw.me</a>)</li>
+		<li>Head over to <a href="https://extract.me/" rel="nofollow">extract.me</a>, and paste the link of the IPSW that contains the compatible SEP and Baseband</li>
+		<li>Find the file of the compatible Baseband and download it. (Most commonly, the compatible Baseband contains the iOS version number, followed by a <code>.bbfw</code> file format)</li>
+		<li>Find the file of the compatible SEP and download it. (Most commonly, the compatible SEP file will contain the boardconfig indetifier of your device (without the "AP"), followed by a <code>.im4w</code> file format)</li>
+		<li>Find the <code>BuildManifest.plist</code> file and download it (This is often found near the bottom)</li>
+	</ol>
+	<p>These downloaded files should be placed into your <code>futurerestore</code> folder before beginning the restoration process.</p>
+
+	<!-- Restoring with custom SEP/Baseband -->
+	<h4>Restoring</h4>
+	<ol>
+		<li>Open Command Prompt/Terminal</li>
+		<li>Drag your <code>futurerestore</code> folder into your Terminal</li>
+		<li>Drag your blob file, type <code>-s</code>, then drag your SEP file</li>
+		<li>Type <code>-b</code>, then drag your Baseband file</li>
+		<li>Type <code>-p</code>,  then drag your BuildManifest file</li>
+		<li>Type <code>-m</code>, then drag your BuildManifest file (again), then drag your IPSW</li>
+	</ol>
+	<p>In the end, your result should look something like this (assumming your folder is in your desktop, using Windows):</p>
+	<pre><code>C:\Users\&lt;youruser&gt;\Desktop\futurerestore.exe -t &lt;your blob (blob.blob)&gt; -s &lt;your SEP&gt; -b &lt;your Baseband&gt; -p &lt;your BuildmManifest&gt; -m &lt;your BuildManifest&gt; &lt;your IPSW (ipsw.ipsw)&gt;</code></pre>
+	<p>For iPods and <strong>Wifi-Only</strong> iPads, you should not specify the baseband:</p>
+	<pre><code>C:\Users\&lt;youruser&gt;\Desktop\futurerestore.exe -t &lt;your blob (blob.blob)&gt; -s &lt;your SEP&gt; --no-baseband -p &lt;your BuildmManifest&gt; -m &lt;your BuildManifest&gt; &lt;your IPSW (ipsw.ipsw)&gt;</code></pre>
+	<p>Once you are sure that you have the right command, hit Enter and the restore should begin.</p>
+	<p>If you encouter any errors throughout the process, head to <a href="https://therealketo.github.io/futurerestore-guide/error-codes" rel="nofollow">this page</a>, which has a list of common errors you can encouter when using Futurerestore and how to solve them.</p>
+	
+	<!-- About/Info -->
+	<h2></h2>
+	<h3>About this Guide</h3>
+	<p>This guide was updated on <strong>August 3rd, 2019</strong>, and continues to be updated and maintained on <a href="https://github.com/TheRealKeto/futurerestore-guide" rel="nofollow">Github</a> by me, with the latest information about SEP/Baseband compatibility and other information.</p>
+	<p>If you have any questions, head over to <a href="https://discordapp.com/invite/jb" rel="nofollow">r/Jailbreak's Discord Server</a> for support under their futurerestore channel.</p>
+</article>
+</html>

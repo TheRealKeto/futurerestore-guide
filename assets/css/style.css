@@ -1,0 +1,64 @@
+html {
+  background: #171717;
+  -webkit-animation: fadein 2s;
+          animation: fadein 2s;
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4 {
+  color: white;
+}
+
+.markdown-body p, .markdown-body ol, .markdown-body ul, .markdown-body li, .markdown-body span, .markdown-body footer {
+  color: #d9d9d9;
+}
+
+.markdown-body a {
+  color: #b4d6fd;
+  text-decoration: none;
+}
+
+.markdown-body strong {
+  color: white;
+  font-weight: bold;
+}
+
+.markdown-body code, .markdown-body pre {
+  color: white;
+  background: #212121;
+}
+
+.markdown-body pre {
+  white-space: pre-wrap;
+}
+
+/* Fade-in Animation when on-load */
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Styling for the scrollbar on the right */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #232323;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #303030;
+}
