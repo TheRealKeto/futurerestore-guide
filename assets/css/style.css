@@ -1,38 +1,25 @@
-html {
-  background: #171717;
-  -webkit-animation: fadein 2s;
-          animation: fadein 2s;
+/* Light mode */
+/* Content styling */
+body {
+  -webkit-animation: fade-in 2s;
+          animation: fade-in 2s;
+  background: #fcfcfc;
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
 }
 
-.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4 {
-  color: white;
+.markdown-body {
+  margin: 0 auto;
+  padding: 45px;
+  padding-bottom: 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
 }
 
-.markdown-body p, .markdown-body ol, .markdown-body ul, .markdown-body li, .markdown-body span, .markdown-body footer {
-  color: #d9d9d9;
-}
-
-.markdown-body a {
-  color: #b4d6fd;
-  text-decoration: none;
-}
-
-.markdown-body strong {
-  color: white;
-  font-weight: bold;
-}
-
-.markdown-body code, .markdown-body pre {
-  color: white;
-  background: #212121;
-}
-
-.markdown-body pre {
-  white-space: pre-wrap;
-}
-
-/* Fade-in Animation when on-load */
-@-webkit-keyframes fadein {
+/* Fade-in animation when on-load */
+@-webkit-keyframes fade-in {
   from {
     opacity: 0;
   }
@@ -40,7 +27,7 @@ html {
     opacity: 1;
   }
 }
-@keyframes fadein {
+@keyframes fade-in {
   from {
     opacity: 0;
   }
@@ -49,16 +36,120 @@ html {
   }
 }
 
-/* Styling for the scrollbar on the right */
+/* Light mode styling for scrollbar */
 ::-webkit-scrollbar {
   width: 9px;
   height: 9px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #232323;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
+  background: #a6a6a6;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #808080;
+}
+
+/* Dark mode */
+/* Content styling */
+body.dark {
+  background: #141414;
+}
+
+body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark strong, body.dark code, body.dark pre {
+  color: white;
+}
+
+body.dark p, body.dark ol, body.dark ul, body.dark li, body.dark span {
+  color: #d9d9d9;
+}
+
+body.dark a {
+  color: #b4d6fd;
+}
+
+body.dark code, body.dark pre {
+  background: #181818;
+}
+
+/* Dark mode styling for scrollbar */
+body.dark::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+body.dark::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body.dark::-webkit-scrollbar-thumb {
   background: #303030;
+  border-radius: 3px;
+}
+
+body.dark::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+/* Darkmode toggle */
+input[type=checkbox] {
+  position: absolute;
+  visibility: hidden;
+}
+
+label {
+  position: absolute;
+  top: 63px;
+  right: 210px;
+  background: grey;
+  border: 2px solid grey;
+  width: 45px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+label:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 20px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + label {
+  background: #3694FF;
+  border: 2px solid #3694FF;
+}
+
+input:checked + label:after {
+  left: calc(100% - 5px);
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+label:active:after {
+  width: 25px;
+}
+
+/* Mobile support for website */
+@media only screen and (max-width: 670px) {
+  .markdown-body {
+    padding: 15px;
+  }
+  /* Support for the darkmode toggle */
+  label {
+    top: 35px;
+    right: 40px;
+  }
 }
