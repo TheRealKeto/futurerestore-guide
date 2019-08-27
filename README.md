@@ -10,8 +10,8 @@ I have thought about adding more "features" to this project, but my knowledge is
 
 - [x] Add slight CSS animation(s) (or use another method, possibly?) to the project.
 - [x] Add website support for modern iPhones (just in case static sizing doesn't work, padding may still be off on some iPads)
-- [x] Make darkmode the default theme (currently, there's only a darkmode theme, so it does the job)
-- [ ] Add a darkmode toggle with LocalStorage in mind (so that you don't have to constantly keep activating it)
+- [x] Make darkmode the default theme
+- [x] Add a darkmode toggle with LocalStorage in mind (so that you don't have to constantly keep activating it)
 
 These are just things I feel like this project really needs, but I do have other things which are pretty minor, such as: 
 
