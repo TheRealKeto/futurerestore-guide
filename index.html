@@ -30,19 +30,20 @@
         <li>If you're on Windows, avoid having a 32-bit system, as Futurerestore does not work on them. </li>
         </ul>
 
-        <h2>Getting ready to Restore</h2>
+        <h2>Getting Ready to Restore</h2>
         <p>In order to use Futurerestore to upgrade, dowgrade, or re-restore to your desired unsigned firmware, there are a few things you will need, such as: </p>
         <ul>
         <li><a href="https://github.com/s0uthwest/futurerestore/releases">Futurerestore</a>'s latest release.</li>
         <li>Your SHSH blob file from <a href="https://tsssaver.1conan.com">TSSSaver</a>, or <a href="https://shsh.host/">shsh.host</a>.</li>
         <li>The IPSW from <a href="https://ipsw.me/">ipsw.me</a> contaning the SEP and Baseband that is compatible with the unsigned firmware you're trying to upgrade, downgrade, or re-restore to.</li>
         </ul>
-        <p>Additionally, if you know you have to specify an specific SEP and Baseband, you will need: </p>
+        <p>Additionally, if you know you have to specify an specific SEP and Baseband, you will need:  </p>
         <ul>
         <li>A <code>.im4w</code> file containing the boardconfig indentifier of your device. (This is your SEP)</li>
-        <li>A <code>.bbtw</code> file containing the iOS version number. (This is your baseband)</li>
+        <li>A <code>.bbfw</code> file containing the iOS version number. (This is your baseband)</li>
         <li>The <code>BuildManifest.plist</code> file from said IPSW.</li>
         </ul>
+        <p>A tutorial on how to get these files is located in the section below titled "Manually specify SEP &amp; Baseband"</p>
         <p>In order to obtain additional files, you'll have to extract the IPSW. You can use <a href="https://extract.me/">extract.me</a> in order to download additional files without having to extract an IPSW on your system. </p>
         <p>Once you have these files, its a good practice to put them inside a folder located on your desktop, named <code>futurerestore</code>. </p>
 
@@ -72,7 +73,7 @@
         <li>Within that region, type in your string that you saved from your SHSH blob.</li>
         <li>Press "Set Nonce" (or hit "Jailbreak" if you're using a jailbreak tool).</li>
         </ol>
-        <p>Once you've set your nonce generator, you're ready to begin the restoration process. Note that <strong>if you power off your device, or it turns off for any given reason, you will need to set your nonce again.</strong></p>
+        <p>Once you've set your nonce generator, you're ready to begin the restoration process. 
 
         <h2>Restoration</h2>
         <p>You're finally ready to start using Futurerestore in order to upgrade, downgrade, or re-restore to your desired unsigned firmware. Before you move forward, keep in mind that: </p>
@@ -102,7 +103,7 @@
         <p>This method is used when the latest iOS release has an SEP and Baseband that is <strong>not compatible</strong> with the version you're trying to upgrade, downgrade, or re-restore to. The neat thing about this is that its similar to the previous method, except there are some alternations. </p>
         <p>To find your SEP/Baseband Files</p>
         <p>Friend @rJailbreakBot on <a href="https://web.telegram.org">Telegram</a>, then type <code>/sepbb</code> into the chat bar and enter your device when prompted, then the iOS version that you <strong>plan to get the SEP/BB from.</strong></p>
-        <p>The bot will then tell you the names of the files that you should get from that version's IPSW, as well as their filepaths relative to the ipsw. If you can't find some kind of partial download tool, you can always download the ipsw to your computer then open it with WinRAR on windows, or by changing the file extension (.ipsw) to .zip on MacOS.</p> 
+        <p>The bot will then tell you the names of the files that you should get from that version's IPSW, as well as their filepaths relative to the ipsw. If partial download tools like <a href="https://extract.me/">extract.me</a> aren't working, you can always download the ipsw to your computer then open it with WinRAR on windows, or by changing the file extension (.ipsw) to .zip and double-clicking on MacOS.</p> 
         <p>In order to upgrade, downgrade, or re-restore using this method: </p>
         <ol>
         <li>Open Command Prompt/Terminal.</li>
@@ -121,7 +122,7 @@
         <p>If you run into any issues during the Futurerestore process, please refer to <a href="https://therealketo.github.io/futurerestore-guide/error-codes">this</a>, which includes the most common errors you can encouter when using Futurerestore, and how to fix them. </p>
         <h2></h2>
         <h3>About this guide</h3>
-        <p>This guide was updated on <strong>August 27th, 2019</strong>, and continues to be updated with the lastest SEP/Baseband compatiblity and other info. </p>
+        <p>This guide was updated on <strong>October 1st, 2019</strong>, and continues to be updated with the lastest SEP/Baseband compatiblity and other info. </p>
         <p>If you have any questions, head over to <a href="https://discordapp.com/invite/jb">r/Jailbreak's Discord Server</a> for support under their futurerestore-help channel.</p>
     </div>
 <script>
